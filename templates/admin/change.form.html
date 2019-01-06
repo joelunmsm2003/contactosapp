@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+ 
+{% block title %}Monto Consumido Correo{% endblock %}
+ 
+{% block content %}
+<div id="content-main">
+  <h1>Monto Consumido:</h1>
+
+  <!-- {% regroup book_list|dictsort:"publisher.name" by publisher as books_by_publisher %}
+ -->
+
+
+ <h1>Cantidad de Correo Enviados {{cantidad}}</h1>
+ <h1>Costo Unitario S/. 0.1</h1>
+ <h1>Monto Total Consumido S/. {{monto}}</h1>
+  {% for data in book_list %}
+   <!--  <h3>{{ publisher }}</h3> -->
+     <ul>
+
+   	 
+
+     <li>{{data.fecha}}</li>
+      <!-- {% for book in publisher.list|dictsort:"title" %}
+        <li>{{ book }}</li>
+      {% endfor %} -->
+    </ul>
+  {% endfor %}
+</div>
+{% endblock %}

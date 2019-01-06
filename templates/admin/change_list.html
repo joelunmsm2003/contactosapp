@@ -1,0 +1,140 @@
+
+{% extends "admin/change_list.html" %}
+
+
+{% load i18n admin_static admin_list %}
+{% block breadcrumbs %}
+
+
+
+
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.2/jquery.js'></script>
+
+<script type="text/javascript" src="/static/ws4.js"></script>
+
+<audio id="myAudio" >
+ 
+  <source src="/static/audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="confirmaAudio" >
+ 
+  <source src="/static/confirma.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+<script type="text/javascript">
+
+
+
+
+jQuery(document).ready(function($) {
+    var ws4redis = WS4Redis({
+        uri: '{{ WEBSOCKET_URI }}foobar?subscribe-broadcast&publish-broadcast&echo',
+        connecting: on_connecting,
+        connected: on_connected,
+        receive_message: receiveMessage,
+        disconnected: on_disconnected,
+        heartbeat_msg: {{ WS4REDIS_HEARTBEAT }}
+    });
+
+    // attach this function to an event handler on your site
+    function sendMessage() {
+        ws4redis.send_message('A message');
+    }
+
+    function on_connecting() {
+        alert('Websocket is connecting...');
+    }
+
+    function on_connected() {
+        ws4redis.send_message('Hello');
+    }
+
+    function on_disconnected(evt) {
+        alert('Websocket was disconnected: ' + JSON.stringify(evt));
+    }
+
+    // receive a message though the websocket from the server
+    function receiveMessage(msg) {
+
+    	if(msg=='pendiente'){
+
+
+    		playAudio()
+
+			var mensaje= setTimeout(function(){
+
+			//window.location = "http://estokealo.com:8000/admin/app/serviciopedido/";
+
+
+			}, 10000);
+
+    		
+			$.get( "http://estokealo.com:8000/prueba", function( data ) {
+			  
+			});
+
+    	}
+
+    	if(msg=='confirmado'){
+
+
+    		//confirmaAudio()
+
+    	
+
+
+			setTimeout(function(){
+
+			window.location = "http://estokealo.com:8000/admin/app/serviciopedido/";
+
+
+			}, 30000);
+
+    		
+			$.get( "http://estokealo.com:8000/prueba", function( data ) {
+			  
+			});
+
+    	}
+
+    }
+
+
+ //    function elegir() {
+    	
+	// 	if (confirm('se borran los datos')) {
+	// 	window.location = "http://estokealo.com:8000/admin/app/serviciopedido/";
+	// 	} 
+		
+	// }
+
+});
+
+
+var x = document.getElementById("myAudio"); 
+
+var confirma = document.getElementById("confirmaAudio"); 
+
+
+function playAudio() { 
+    //x.play(); 
+} 
+
+
+function confirmaAudio() { 
+    //confirma.play(); 
+} 
+
+
+function pauseAudio() { 
+   // x.pause(); 
+} 
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+
+{% extends "admin/base.html" %}
+
+<style type="text/css">
+
+.field-peru{
+
+    border-top: 1px solid #81adc6;
+   
+}
+
+.field-broker:after {
+  content: "Seleccione Paises ";
+  font-weight: bold;
+
+}
+.field-broker>div{
+
+    padding-bottom: 22px;
+}
+
+.field-ramos_generales{
+
+    border-top: 1px solid #81adc6;
+   
+}
+
+.field-bolivia:after {
+  content: "Seleccione Ramos ";
+  font-weight: bold;
+
+}
+.field-bolivia>div{
+
+    padding-bottom: 22px;
+}
+
+.field-hispana_seguros{
+
+    border-top: 1px solid #81adc6;
+   
+}
+
+.field-vida:after {
+  content: "Seleccione Compañias ";
+  font-weight: bold;
+
+}
+.field-vida>div{
+
+    padding-bottom: 22px;
+}
+
+
+	
+#header{
+
+    width: auto;
+    height: 40px;
+    padding: 10px 40px;
+    background: #ffab2c !important;
+    line-height: 40px;
+    color: #fff !important;
+    overflow: hidden;
+}
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff !important;
+}
+
+caption{
+
+	background: #7c89f5 !important;
+}
+
+</style>
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
